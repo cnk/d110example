@@ -74,13 +74,36 @@ WSGI_APPLICATION = 'd110example.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DATABASE_NAME', 'd110example'),
+        'USER': os.environ.get('DATABASE_USER', 'd110example'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'd110example'),
+        'HOST': os.environ.get('DATABASE_HOST', '10.1.99.100'),
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),
+        'CHARSET': 'utf8',
+    },
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ.get('DATABASE_NAME', 'd110example'),
+#         'USER': os.environ.get('DATABASE_USER', 'd110example'),
+#         'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'd110example'),
+#         'HOST': os.environ.get('DATABASE_HOST', '10.1.99.100'),
+#         'PORT': os.environ.get('DATABASE_PORT', '3306'),
+#         'CHARSET': 'utf8',
+#     },
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
